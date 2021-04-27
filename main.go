@@ -1,17 +1,9 @@
 package main
 
-import (
-	"net/http"
-
-	"github.com/labstack/echo"
-)
+import "project-2-rizwijaya/routes"
 
 func main() {
-	e := echo.New()
-
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello World!")
-	})
+	e := routes.Init()
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
