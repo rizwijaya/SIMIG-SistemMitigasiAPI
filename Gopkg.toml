@@ -32,3 +32,11 @@
 [[constraint]]
   name = "github.com/labstack/echo"
   version = "4.2.2"
+
+[[constraint]]
+  name = "github.com/tkanos/gonfig"
+  version = "1.0.0"
+
+[[constraint]]
+  name = "github.com/go-sql-driver/mysql"
+  version = "1.6.0"

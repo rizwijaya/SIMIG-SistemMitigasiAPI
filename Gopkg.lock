@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  digest = "1:e3b25b60c5598d88c45b25d85a76816d0a81fc3fd46c00791136614c1183fc0b"
+  name = "github.com/go-sql-driver/mysql"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "bcc459a906419e2890a50fc2c99ea6dd927a88f2"
+  version = "v1.6.0"
+
+[[projects]]
   digest = "1:51ed1e19d6cdfb43f3d3d1ecd0ed4a866009f66939cf95ff964892f5325c78b2"
   name = "github.com/labstack/echo"
   packages = ["."]
@@ -35,6 +43,14 @@
   pruneopts = "UT"
   revision = "7b513a986450394f7bbf1476909911b3aa3a55ce"
   version = "v0.0.12"
+
+[[projects]]
+  digest = "1:dc48dff981a895912c33cf272b1d869c216d058bd4025736cb481d3ceeed6872"
+  name = "github.com/tkanos/gonfig"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "e83209aed2d171bab5ffb312a1e630110481cb99"
+  version = "1.0"
 
 [[projects]]
   digest = "1:c468422f334a6b46a19448ad59aaffdfc0a36b08fdcc1c749a0b29b6453d7e59"
@@ -116,6 +132,10 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/labstack/echo"]
+  input-imports = [
+    "github.com/go-sql-driver/mysql",
+    "github.com/labstack/echo",
+    "github.com/tkanos/gonfig",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
