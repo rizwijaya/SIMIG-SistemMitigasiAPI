@@ -24,7 +24,6 @@ func Init() {
 	if err != nil {
 		panic("DNS Invalid")
 	}
-	defer db.Close()
 }
 
 func CreateCon() *sql.DB {
