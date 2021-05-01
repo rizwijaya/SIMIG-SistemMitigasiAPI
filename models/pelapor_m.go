@@ -9,19 +9,16 @@ type Pelapor struct {
 	Id       int    `json:"id"`
 	Username string `json:"username"`
 	Nama     string `json:"pelapor"`
-	Telp     string `json:"telepon"`
-	Email    string `json:"email"`
-	Date     string `json:"tanggal"`
 }
 
-func FetchAllPelapor() (Response, error) {
+func SemuaPelapor() (Response, error) {
 	var obj Pelapor
 	var arrobj []Pelapor
 	var res Response
 
 	con := db.CreateCon()
 
-	sqlStatement := "SELECT * FROM pelapor"
+	sqlStatement := "SELECT id_pelapor, username, nama_pelapor FROM pelapor"
 
 	rows, err := con.Query(sqlStatement)
 
@@ -31,7 +28,7 @@ func FetchAllPelapor() (Response, error) {
 	defer rows.Close()
 
 	for rows.Next() { //Melakukan perulangan data
-		err = rows.Scan(&obj.Id, &obj.Username, &obj.Nama, &obj.Telp, &obj.Email, &obj.Date)
+		err = rows.Scan(&obj.Id, &obj.Username, &obj.Nama)
 		if err != nil { //Jika terjadi eror maka kembalikan ke controller
 			return res, err
 		}

@@ -7,8 +7,8 @@ import (
 	"github.com/labstack/echo"
 )
 
-func FetchAllPelapor(c echo.Context) error { //Menghandle response yang masuk
-	result, err := models.FetchAllPelapor()
+func SemuaPelapor(c echo.Context) error { //Menghandle response yang masuk
+	result, err := models.SemuaPelapor()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()}) //Menampilakan interface error
 	}
