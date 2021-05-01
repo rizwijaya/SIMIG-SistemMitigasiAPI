@@ -14,7 +14,7 @@ func Init() *echo.Echo {
 		return c.String(http.StatusOK, "Hello World!")
 	})
 
-	e.GET("/pelapor", controllers.FetchAllPelapor)
-
+	e.GET("/pelapor", controllers.SemuaPelapor)
+	e.GET("/bencana", controllers.SemuaBencana)
 	return e
 }
