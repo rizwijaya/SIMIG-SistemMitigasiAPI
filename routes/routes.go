@@ -14,7 +14,10 @@ func Init() *echo.Echo {
 		return c.String(http.StatusOK, "Hello World!")
 	})
 
-	e.GET("/pelapor", controllers.SemuaPelapor)
-	e.GET("/bencana", controllers.SemuaBencana)
+	//Fitur Mitigasi Bencana
+	e.GET("/pelapor", controllers.SemuaPelapor)  //Dapatkan data pelapor bencana
+	e.GET("/bencana", controllers.SemuaBencana)  //Dapatkan data bencana yang pernah terjadi
+	e.POST("/bencana", controllers.LaporBencana) //Laporkan bila terjadi bencana
+
 	return e
 }
