@@ -12,6 +12,7 @@ type Bencana struct {
 	Lokasi      string `json:"lokasi"`
 	Tgl_laporan string `json:"tanggal_laporan"`
 	Tgl_terjadi string `json:"tanggal_terjadi"`
+	Tgl_selesai string `json:"tanggal_selesai"`
 }
 
 func SemuaBencana() (Response, error) {
@@ -93,6 +94,39 @@ func LaporBencana(username string, nama string, telp string, email string, benca
 	res.Data = map[string]int64{
 		"Kode Laporan Bencana": lastInsertedId2,
 	}
+
+	return res, nil
+}
+
+//Menampilkan histori bencana yang pernah terjadi
+func HistoriBencana() (Response, error) {
+	var obj Bencana
+	var arrobj []Bencana
+	var res Response
+
+	con := db.CreateCon()
+
+	sqlStatement := "SELECT t2.id_bencana, t1.username, t2.bencana, t2.lokasi, t1.tgl_laporan, t2.tgl_terjadi, t2.tgl_selesai FROM pelapor t1 INNER JOIN bencana t2 ON t1.id_pelapor=t2.id_pelapor WHERE t2.tgl_selesai IS NOT NULL AND t2.status = 1"
+
+	rows, err := con.Query(sqlStatement)
+
+	if err != nil { //Jika terjadi eror
+		return res, err
+	}
+	defer rows.Close()
+
+	for rows.Next() { //Melakukan perulangan data
+		err = rows.Scan(&obj.Id, &obj.Username, &obj.Bencana, &obj.Lokasi, &obj.Tgl_laporan, &obj.Tgl_terjadi, &obj.Tgl_selesai)
+		if err != nil { //Jika terjadi eror maka kembalikan ke controller
+			return res, err
+		}
+
+		arrobj = append(arrobj, obj)
+	}
+
+	res.Status = http.StatusOK
+	res.Message = "Success"
+	res.Data = arrobj
 
 	return res, nil
 }

@@ -15,9 +15,9 @@ func Init() *echo.Echo {
 	})
 
 	//Fitur Mitigasi Bencana
-	e.GET("/pelapor", controllers.SemuaPelapor)  //Dapatkan data pelapor bencana
-	e.GET("/bencana", controllers.SemuaBencana)  //Dapatkan data bencana yang pernah terjadi
-	e.POST("/bencana", controllers.LaporBencana) //Laporkan bila terjadi bencana
-
+	e.GET("/pelapor", controllers.SemuaPelapor)          //Dapatkan data pelapor bencana
+	e.GET("/bencana", controllers.SemuaBencana)          //Dapatkan data bencana yang pernah terjadi
+	e.POST("/bencana", controllers.LaporBencana)         //Laporkan bila terjadi bencana
+	e.GET("/historibencana", controllers.HistoriBencana) //Menampilkan Histori bencana yang pernah terjadi
 	return e
 }

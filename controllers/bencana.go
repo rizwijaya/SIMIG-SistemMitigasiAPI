@@ -33,3 +33,13 @@ func LaporBencana(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, result)
 }
+
+//Fungsi untuk menampilkan histori bencana alam
+func HistoriBencana(c echo.Context) error { //Menghandle response yang masuk
+	result, err := models.HistoriBencana()
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()}) //Menampilakan interface error
+	}
+
+	return c.JSON(http.StatusOK, result)
+}
