@@ -19,5 +19,7 @@ func Init() *echo.Echo {
 	e.GET("/bencana", controllers.SemuaBencana)          //Dapatkan data bencana yang pernah terjadi
 	e.POST("/bencana", controllers.LaporBencana)         //Laporkan bila terjadi bencana
 	e.GET("/historibencana", controllers.HistoriBencana) //Menampilkan Histori bencana yang pernah terjadi
+	e.PUT("/bencana", controllers.UpdateBencana)         //Update bencana pada Admin - jika selesai
+
 	return e
 }

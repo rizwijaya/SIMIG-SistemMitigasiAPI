@@ -130,3 +130,34 @@ func HistoriBencana() (Response, error) {
 
 	return res, nil
 }
+
+//Update bencana jika sudah teratasi
+func UpdateBencana(id int, tgl_selesai string) (Response, error) {
+	var res Response
+
+	con := db.CreateCon()
+
+	sqlStatement := "Update bencana SET tgl_selesai = ? WHERE id_bencana = ?"
+
+	stmt, err := con.Prepare(sqlStatement)
+	if err != nil {
+		return res, err
+	}
+
+	result, err := stmt.Exec(tgl_selesai, id)
+	if err != nil {
+		return res, err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return res, err
+	}
+	res.Status = http.StatusOK
+	res.Message = "Success"
+	res.Data = map[string]int64{
+		"rows_Affected": rowsAffected,
+	}
+
+	return res, nil
+}
