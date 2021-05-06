@@ -44,3 +44,36 @@ func SemuaBerita() (Response, error) { //Fungsi untuk menampilkan berita bencana
 
 	return res, nil
 }
+
+//Fungsi Tulis berita
+func TulisBerita(judul string, isi_berita string, penulis string, tgl_ditulis string) (Response, error) {
+	var res Response
+
+	con := db.CreateCon()
+
+	//Tambahkan Berita ke database berita
+	sqlStatement := "INSERT berita (judul, isi_berita, penulis, tanggal_ditulis) VALUES (?, ?, ?, ?)"
+
+	stmt, err := con.Prepare(sqlStatement)
+	if err != nil {
+		return res, err
+	}
+
+	result2, err := stmt.Exec(judul, isi_berita, penulis, tgl_ditulis)
+	if err != nil {
+		return res, err
+	}
+
+	lastInsertedId, err := result2.LastInsertId() //Dapatkan id berita
+	if err != nil {
+		return res, err
+	}
+
+	res.Status = http.StatusOK
+	res.Message = "Success"
+	res.Data = map[string]int64{
+		"Kode Berita": lastInsertedId,
+	}
+
+	return res, nil
+}

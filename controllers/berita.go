@@ -15,3 +15,18 @@ func SemuaBerita(c echo.Context) error { //Menghandle response yang masuk
 
 	return c.JSON(http.StatusOK, result)
 }
+
+//Fungsi untuk menulis berita
+func TulisBerita(c echo.Context) error {
+	judul := c.FormValue("judul")
+	isi_berita := c.FormValue("isi_berita")
+	penulis := c.FormValue("penulis")
+	tanggal_ditulis := c.FormValue("tanggal_ditulis")
+
+	result, err := models.TulisBerita(judul, isi_berita, penulis, tanggal_ditulis)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	return c.JSON(http.StatusOK, result)
+}
