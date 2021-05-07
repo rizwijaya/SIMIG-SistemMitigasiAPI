@@ -108,3 +108,35 @@ func UpdateBerita(id int, judul string, isi_berita string, penulis string, tangg
 
 	return res, nil
 }
+
+//Fungsi untuk hapus berita
+func HapusBerita(id int) (Response, error) {
+	var res Response
+
+	con := db.CreateCon()
+
+	sqlStatement := "DELETE FROM berita where id_berita =?"
+
+	stmt, err := con.Prepare(sqlStatement)
+	if err != nil {
+		return res, err
+	}
+
+	result, err := stmt.Exec(id)
+	if err != nil {
+		return res, err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return res, err
+	}
+
+	res.Status = http.StatusOK
+	res.Message = "Success"
+	res.Data = map[string]int64{
+		"rows_Affected": rowsAffected,
+	}
+
+	return res, nil
+}

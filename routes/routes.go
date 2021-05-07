@@ -22,9 +22,10 @@ func Init() *echo.Echo {
 	e.PUT("/bencana", controllers.UpdateBencana)         //Update bencana pada Admin - jika selesai
 
 	//Fitur berita bencana
-	e.GET("/berita", controllers.SemuaBerita)  //Daftar berita bencana terbaru
-	e.POST("/berita", controllers.TulisBerita) //Tambah berita bencana
-	e.PUT("/berita", controllers.UpdateBerita) //Edit berita bencana
+	e.GET("/berita", controllers.SemuaBerita)    //Daftar berita bencana terbaru
+	e.POST("/berita", controllers.TulisBerita)   //Tambah berita bencana
+	e.PUT("/berita", controllers.UpdateBerita)   //Edit berita bencana
+	e.DELETE("/berita", controllers.HapusBerita) //Hapus berita bencana
 
 	return e
 }
