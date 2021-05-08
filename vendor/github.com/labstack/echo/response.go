@@ -56,21 +56,18 @@ func (r *Response) WriteHeader(code int) {
 		r.echo.Logger.Warn("response already committed")
 		return
 	}
-	r.Status = code
 	for _, fn := range r.beforeFuncs {
 		fn()
 	}
-	r.Writer.WriteHeader(r.Status)
+	r.Status = code
+	r.Writer.WriteHeader(code)
 	r.Committed = true
 }
 
 // Write writes the data to the connection as part of an HTTP reply.
 func (r *Response) Write(b []byte) (n int, err error) {
 	if !r.Committed {
-		if r.Status == 0 {
-			r.Status = http.StatusOK
-		}
-		r.WriteHeader(r.Status)
+		r.WriteHeader(http.StatusOK)
 	}
 	n, err = r.Writer.Write(b)
 	r.Size += int64(n)
@@ -92,6 +89,15 @@ func (r *Response) Flush() {
 // See [http.Hijacker](https://golang.org/pkg/net/http/#Hijacker)
 func (r *Response) Hijack() (net.Conn, *bufio.ReadWriter, error) {
 	return r.Writer.(http.Hijacker).Hijack()
+}
+
+// CloseNotify implements the http.CloseNotifier interface to allow detecting
+// when the underlying connection has gone away.
+// This mechanism can be used to cancel long operations on the server if the
+// client has disconnected before the response is ready.
+// See [http.CloseNotifier](https://golang.org/pkg/net/http/#CloseNotifier)
+func (r *Response) CloseNotify() <-chan bool {
+	return r.Writer.(http.CloseNotifier).CloseNotify()
 }
 
 func (r *Response) reset(w http.ResponseWriter) {
