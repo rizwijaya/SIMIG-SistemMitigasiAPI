@@ -3,6 +3,7 @@ package routes
 import (
 	"net/http"
 	"project-2-rizwijaya/controllers"
+	"project-2-rizwijaya/middleware"
 
 	"github.com/labstack/echo"
 )
@@ -15,17 +16,19 @@ func Init() *echo.Echo {
 	})
 
 	//Fitur Mitigasi Bencana
-	e.GET("/pelapor", controllers.SemuaPelapor)          //Dapatkan data pelapor bencana
-	e.GET("/bencana", controllers.SemuaBencana)          //Dapatkan data bencana yang pernah terjadi
-	e.POST("/bencana", controllers.LaporBencana)         //Laporkan bila terjadi bencana
-	e.GET("/historibencana", controllers.HistoriBencana) //Menampilkan Histori bencana yang pernah terjadi
-	e.PUT("/bencana", controllers.UpdateBencana)         //Update bencana pada Admin - jika selesai
+	e.GET("/pelapor", controllers.SemuaPelapor, middleware.IsAuthenticated)          //Dapatkan data pelapor bencana
+	e.GET("/bencana", controllers.SemuaBencana)                                      //Dapatkan data bencana yang pernah terjadi
+	e.POST("/bencana", controllers.LaporBencana, middleware.IsAuthenticated)         //Laporkan bila terjadi bencana
+	e.GET("/historibencana", controllers.HistoriBencana, middleware.IsAuthenticated) //Menampilkan Histori bencana yang pernah terjadi
+	e.PUT("/bencana", controllers.UpdateBencana, middleware.IsAuthenticated)         //Update bencana pada Admin - jika selesai
 
 	//Fitur berita bencana
-	e.GET("/berita", controllers.SemuaBerita)    //Daftar berita bencana terbaru
-	e.POST("/berita", controllers.TulisBerita)   //Tambah berita bencana
-	e.PUT("/berita", controllers.UpdateBerita)   //Edit berita bencana
-	e.DELETE("/berita", controllers.HapusBerita) //Hapus berita bencana
+	e.GET("/berita", controllers.SemuaBerita)                                //Daftar berita bencana terbaru
+	e.POST("/berita", controllers.TulisBerita, middleware.IsAuthenticated)   //Tambah berita bencana
+	e.PUT("/berita", controllers.UpdateBerita, middleware.IsAuthenticated)   //Edit berita bencana
+	e.DELETE("/berita", controllers.HapusBerita, middleware.IsAuthenticated) //Hapus berita bencana
 
+	//e.GET("/generate-hash/:password", controllers.GenerateHashPassword)
+	e.POST("/login", controllers.CheckLogin)
 	return e
 }
