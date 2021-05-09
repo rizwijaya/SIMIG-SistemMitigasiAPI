@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"project-2-rizwijaya/models"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 )
 
 func SemuaPelapor(c echo.Context) error { //Menghandle response yang masuk

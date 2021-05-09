@@ -5,7 +5,7 @@ import (
 	"project-2-rizwijaya/models"
 	"strconv"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 )
 
 func SemuaBerita(c echo.Context) error { //Menghandle response yang masuk
