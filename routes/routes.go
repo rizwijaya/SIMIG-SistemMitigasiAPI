@@ -35,6 +35,9 @@ func Init() *echo.Echo {
 	//Template parser
 	templates := make(map[string]*template.Template)
 	templates["beranda.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/beranda.html", "views/footer.html", "views/alert.html"))
+	templates["login.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/login.html", "views/alert.html"))
+	templates["dashboard.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/dashboard.html", "views/footer.html", "views/alert.html"))
+
 	e.Renderer = &TemplateRegistry{ //Lakukan render template
 		Templates: templates,
 	}
@@ -48,6 +51,11 @@ func Init() *echo.Echo {
 
 	//Routing URL pada website
 	e.GET("/", controllers.BerandaView)
+	e.GET("/dashboard", controllers.DashboardView, middlewares.IsLogged)
+	//Login dan Logout
+	e.GET("/login", controllers.LoginView, middlewares.IsNotLogged)
+	e.POST("/login", controllers.LoginUser, controllers.CheckLogin)
+	e.DELETE("/logout", controllers.LogoutUser, controllers.Logouting)
 
 	//Fitur Mitigasi Bencana
 	e.GET("/pelapor", controllers.SemuaPelapor, middlewares.IsAuthenticated)          //Dapatkan data pelapor bencana

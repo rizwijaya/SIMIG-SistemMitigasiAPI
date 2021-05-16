@@ -2,42 +2,55 @@ package models
 
 import (
 	"database/sql"
-	"fmt"
+	"errors"
 	"project-2-rizwijaya/db"
-	"project-2-rizwijaya/helpers"
+
+	"github.com/gookit/validate"
 )
 
 type User struct {
-	Id       int    `json:"id"`
-	Username string `json:"username"`
+	ID       string `json:"id,omitempty" form:"id,omitempty"`
+	Nama     string `json:"nama" form:"nama" validate:"required|minLen:5|maxLen:150"`
+	Username string `json:"username" form:"username" validate:"required|minLen:5|maxLen:50"`
+	Email    string `json:"email" form:"email" validate:"required|email"`
+	Password string `json:"password" form:"password" validate:"required|minLen:6"`
 }
 
-func CheckLogin(username, password string) (bool, error) {
-	var obj User
-	var pwd string
+func (f User) ConfigValidation(v *validate.Validation) {
+	v.StopOnError = false
+	v.WithScenes(validate.SValues{
+		"login":    []string{"Username", "Password"},
+		"register": []string{"Nama", "Username", "Email", "Password"},
+	})
+}
+
+func (f User) Messages() map[string]string {
+	return validate.MS{
+		"required":        "Bidang {field} harus diisi.",
+		"Email.email":     "Format Email tidak valid.",
+		"Nama.minLen":     "Minimal panjang Nama adalah 5",
+		"Nama.maxLen":     "Maksimal panjang Nama adalah 150",
+		"Username.minLen": "Minimal panjang Username adalah 5",
+		"Username.maxLen": "Maksimal panjang Username adalah 50",
+		"Password.minLen": "Minimal panjang Password adalah 6",
+	}
+}
+
+func CheckLogin(usernameForm string) (User, error) {
+	var user User
+	var id, nama, username, email, password string
 
 	con := db.CreateCon()
 
-	sqlStatement := "SELECT id_user, username, password FROM users WHERE username = ?"
+	sqlStatement := "SELECT id_user, nama_user, email, username, password FROM users WHERE username = ?;"
 
-	err := con.QueryRow(sqlStatement, username).Scan(&obj.Id, &obj.Username, &pwd)
+	err := con.QueryRow(sqlStatement, usernameForm).Scan(&id, &nama, &email, &username, &password)
 
 	if err == sql.ErrNoRows {
-		fmt.Print("Username not found")
-		return false, err
+		//fmt.Print("Username not found")
+		return user, errors.New("Username/Password salah.")
 	}
 
-	if err != nil {
-		fmt.Println("Query error")
-		return false, err
-	}
-
-	//Jika tidak ada error, mengecek password
-	match, err := helpers.CheckPasswordHash(password, pwd)
-	if !match {
-		fmt.Println("Hash dan password doesn't match.")
-		return false, err
-	}
-
-	return true, nil
+	user = User{ID: id, Nama: nama, Email: email, Username: username, Password: password}
+	return user, nil
 }
