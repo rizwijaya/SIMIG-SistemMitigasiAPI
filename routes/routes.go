@@ -37,7 +37,7 @@ func Init() *echo.Echo {
 	templates["beranda.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/beranda.html", "views/footer.html", "views/alert.html"))
 	templates["login.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/login.html", "views/alert.html"))
 	templates["dashboard.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/dashboard.html", "views/footer.html", "views/alert.html"))
-
+	templates["register.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/register.html", "views/footer.html", "views/alert.html"))
 	e.Renderer = &TemplateRegistry{ //Lakukan render template
 		Templates: templates,
 	}
@@ -56,6 +56,9 @@ func Init() *echo.Echo {
 	e.GET("/login", controllers.LoginView, middlewares.IsNotLogged)
 	e.POST("/login", controllers.LoginUser, controllers.CheckLogin)
 	e.DELETE("/logout", controllers.LogoutUser, controllers.Logouting)
+	//Register user
+	e.GET("/register", controllers.RegisterView)
+	e.POST("/register", controllers.RegisterUser, controllers.Registering)
 
 	//Fitur Mitigasi Bencana
 	e.GET("/pelapor", controllers.SemuaPelapor, middlewares.IsAuthenticated)          //Dapatkan data pelapor bencana

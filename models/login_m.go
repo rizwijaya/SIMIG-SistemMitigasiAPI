@@ -3,9 +3,12 @@ package models
 import (
 	"database/sql"
 	"errors"
+	"fmt"
 	"project-2-rizwijaya/db"
+	"project-2-rizwijaya/helpers"
 
 	"github.com/gookit/validate"
+	"github.com/labstack/echo/v4"
 )
 
 type User struct {
@@ -53,4 +56,55 @@ func CheckLogin(usernameForm string) (User, error) {
 
 	user = User{ID: id, Nama: nama, Email: email, Username: username, Password: password}
 	return user, nil
+}
+
+func SaveUser(c echo.Context) sql.Result {
+	con := db.CreateCon()
+	user := new(User)
+	if err := c.Bind(user); err != nil {
+		fmt.Println(err.Error())
+	}
+
+	hash, _ := helpers.HashPassword(user.Password)
+	user.Password = hash
+	//Tambahkan User baru ke database
+	sqlStatement := "INSERT users (nama_user, email, username, password) VALUES (?, ?, ?, ?)"
+
+	stmt, _ := con.Prepare(sqlStatement)
+	defer stmt.Close()
+
+	result, _ := stmt.Exec(user.Nama, user.Email, user.Username, user.Password)
+	return result
+}
+
+func CheckUser(usernameForm string) (bool, error) {
+	var id, nama, username, email, password string
+
+	con := db.CreateCon()
+
+	sqlStatement := "SELECT id_user, nama_user, email, username, password FROM users WHERE username = ?;"
+
+	err := con.QueryRow(sqlStatement, usernameForm).Scan(&id, &nama, &email, &username, &password)
+
+	if err == sql.ErrNoRows { //Jika tidak terdapat username
+		return true, err
+	}
+
+	return false, nil
+}
+
+func CheckEmail(emailForm string) (bool, error) {
+	var id, nama, username, email, password string
+
+	con := db.CreateCon()
+
+	sqlStatement := "SELECT id_user, nama_user, email, username, password FROM users WHERE email = ?;"
+
+	err := con.QueryRow(sqlStatement, emailForm).Scan(&id, &nama, &email, &username, &password)
+
+	if err == sql.ErrNoRows { //Jika tidak terdapat email
+		return true, err
+	}
+
+	return false, nil
 }

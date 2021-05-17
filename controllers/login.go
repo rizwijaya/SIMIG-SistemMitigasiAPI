@@ -97,3 +97,41 @@ func Logouting(next echo.HandlerFunc) echo.HandlerFunc {
 		return c.Redirect(http.StatusMovedPermanently, "/")
 	}
 }
+
+func Registering(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		data := new(models.User)
+		if err2 := c.Bind(data); err2 != nil {
+			log.Fatal(err2)
+		}
+
+		_, err := models.CheckUser(data.Username) //Mengecek apakah username terdapat pada db.
+		if err == nil {
+			c.(*CustomContext).SetFlash("error", "Username telah terdaftar")
+			return c.Redirect(http.StatusMovedPermanently, "/register")
+		}
+
+		_, err3 := models.CheckEmail(data.Email) //Mengecek apakah email terdapat pada db.
+		if err3 == nil {
+			c.(*CustomContext).SetFlash("error", "Email telah terdaftar")
+			return c.Redirect(http.StatusMovedPermanently, "/register")
+		}
+
+		v := validate.Struct(data)
+		if !v.AtScene("register").Validate() {
+			c.(*CustomContext).SetFlash("error", v.Errors)
+			return c.Redirect(http.StatusMovedPermanently, "/register")
+		}
+		m := map[string]interface{}{
+			"password":         c.FormValue("password"),
+			"confirm_password": c.FormValue("confirm_password"),
+		}
+		vm := validate.Map(m)
+		vm.AddRule("confirm_password", "eqField", "password").SetMessage("Password dan konfirmasi password tidak sama.")
+		if !vm.Validate() {
+			c.(*CustomContext).SetFlash("error", vm.Errors)
+			return c.Redirect(http.StatusMovedPermanently, "/register")
+		}
+		return next(c)
+	}
+}
