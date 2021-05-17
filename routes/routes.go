@@ -37,6 +37,7 @@ func Init() *echo.Echo {
 	templates["beranda.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/beranda.html", "views/footer.html", "views/alert.html"))
 	templates["login.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/login.html", "views/alert.html"))
 	templates["dashboard.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/dashboard.html", "views/footer.html", "views/alert.html"))
+	templates["documentation.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/documentation.html", "views/footer.html", "views/alert.html"))
 	templates["register.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/register.html", "views/footer.html", "views/alert.html"))
 	e.Renderer = &TemplateRegistry{ //Lakukan render template
 		Templates: templates,
@@ -52,6 +53,7 @@ func Init() *echo.Echo {
 	//Routing URL pada website
 	e.GET("/", controllers.BerandaView)
 	e.GET("/dashboard", controllers.DashboardView, middlewares.IsLogged)
+	e.GET("/documentation", controllers.DocumentationView)
 	//Login dan Logout
 	e.GET("/login", controllers.LoginView, middlewares.IsNotLogged)
 	e.POST("/login", controllers.LoginUser, controllers.CheckLogin)

@@ -1,0 +1,73 @@
+{{ define "base.html" }}
+{{ template "header" .}}
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Profile</h1>
+                        <p>Sistem Informasi dan Mitigasi Bencana API
+                            merupakan API yang berisi data bencana yang pernah terjadi
+                            dan sedang terjadi serta mitigasi dari bencana tersebut. </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="/">Home</a></li>
+                        <li>Profile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+    <!-- Profile -->
+    <section id="contact-us" class="contact-us section">
+        <div class="container">
+            <div class="contact-head">
+                <div class="inner-content">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12 col-12">
+                            <div class="contact-info">
+                                <div class="single-head">
+                                    <h3 class="inner-title">Informasi Profile</h3>  
+                                    <div class="single-info">
+                                        <i class="lni lni-user"></i>
+                                        <ul>
+                                            <span>Username</span>
+                                            <li> {{ .auth.Username }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="single-info">
+                                        <i class="lni lni-user"></i>
+                                        <ul>
+                                            <span>Nama</span>
+                                            <li> {{ .auth.Nama }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="single-info">
+                                        <i class="lni lni-envelope"></i>
+                                        <ul>
+                                            <span>Email</span>
+                                            <li><a href="mailto:{{ .auth.Email }}"> {{ .auth.Email }}</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="single-info">
+                                        <i class="lni lni-map"></i>
+                                        <ul>
+                                            <span>Token API</span>
+                                            <p><code>{{ .auth.Token }}</code></p>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Profile -->
+{{ template "footer" .}}
+{{ end }}

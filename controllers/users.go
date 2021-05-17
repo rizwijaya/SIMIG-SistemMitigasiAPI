@@ -32,6 +32,13 @@ func DashboardView(c echo.Context) error {
 	})
 }
 
+func DocumentationView(c echo.Context) error {
+	auth := c.(*middlewares.CustomContext).Auth()
+	return c.Render(http.StatusOK, "documentation.html", map[string]interface{}{
+		"auth": auth,
+	})
+}
+
 func RegisterView(c echo.Context) error {
 	flash := c.(*middlewares.CustomContext).GetFlash()
 	return c.Render(http.StatusOK, "register.html", map[string]interface{}{
