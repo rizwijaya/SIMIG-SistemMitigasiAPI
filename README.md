@@ -4,7 +4,8 @@
 ##### Project 2 Pemprograman Integratif
 
 ---
-# SIMIG - Sistem Informasi dan Mitigasi Bencana
+# ![Logo SIMIG](/assets/images/logo/logo.png)
+Sistem Informasi dan Mitigasi Bencana
 ---
  ## Daftar Isi
 - [SIMIG - Sistem Informasi dan Mitigasi Bencana](#simig---sistem-informasi-dan-mitigasi-bencana)
@@ -14,6 +15,7 @@
 - [Panduan Instalasi](#panduan-instalasi-installation-guide)
 - [Dokumentasi](#dokumentasi)
 - [Contoh Penggunaan](#contoh-penggunaan)
+- [Halaman Utama](#halaman-utama)
 ---
 ## Deskripsi Sistem Informasi dan Mitigasi Bencana
 SIMIG - Sistem Informasi dan Mitigasi Bencana merupakan sistem API yang berisi informasi seputar bencana yang sedang terjadi, pernah terjadi, dan dilengkapi dengan fitur pelaporan bencana dimana pengguna dapat melakukan pelaporan bencana yang terjadi didaerah nya. Selain itu pada sistem ini juga dilengkapi dengan fitur berita yang akan memberikan informasi bencana tersebut secara lengkap yang mana informasi dan berita yang disampaikan dalam situs ini akan dilakukan verifikasi terlebih dahulu sebelum akhirnya dipublish, untuk memastikan bahwa berita serta informasi tersebut merupakan informasi yang benar sesuai dengan fakta yang ada dilapangan.
@@ -199,3 +201,8 @@ dep ensure -add <Nama Package>
 ---
 ## Contoh Penggunaan
 Contoh Penggunaan API website secara realtime dapat diakses pada dokumentasi website atau akses pada url berikut [SIMIG - Sistem Informasi dan Mitigasi Bencana](#).
+
+---
+## Halaman Utama
+
+![Halaman utama SIMIG](/assets/images/home.png)
