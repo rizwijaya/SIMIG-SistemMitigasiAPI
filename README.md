@@ -105,7 +105,7 @@ Langkah awal sebelum menggunakan project adalah melakukan instalasi yaitu sebaga
     ```
 ##### Download Dependensi
 Download dependensi package yang digunakan dengan menggunakan depedency manager.
-    ```bash
+    ```
     dep ensure
     ```
 Apabila tidak memiliki depedency manager bisa menggunakan perintah go.
