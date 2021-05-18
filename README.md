@@ -11,7 +11,7 @@
 - [Deskripsi Sistem Informasi dan Mitigasi Bencana](#deskripsi-sistem-informasi-dan-mitigasi-bencana)
 - [Fitur yang tersedia](#fitur-yang-tersedia)
 - [Struktur Project](#struktur-project)
-- [Panduan Instalasi](#panduan-instalasi-installation-guide))
+- [Panduan Instalasi](#panduan-instalasi-installation-guide)
 - [Dokumentasi](#dokumentasi)
 - [Contoh Penggunaan](#contoh-penggunaan)
 ---
