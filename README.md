@@ -15,11 +15,11 @@
 - [Dokumentasi](#dokumentasi)
 - [Contoh Penggunaan](#contoh-penggunaan)
 ---
-##Deskripsi Sistem Informasi dan Mitigasi Bencana
+## Deskripsi Sistem Informasi dan Mitigasi Bencana
 SIMIG - Sistem Informasi dan Mitigasi Bencana merupakan sistem API yang berisi informasi seputar bencana yang sedang terjadi, pernah terjadi, dan dilengkapi dengan fitur pelaporan bencana dimana pengguna dapat melakukan pelaporan bencana yang terjadi didaerah nya. Selain itu pada sistem ini juga dilengkapi dengan fitur berita yang akan memberikan informasi bencana tersebut secara lengkap yang mana informasi dan berita yang disampaikan dalam situs ini akan dilakukan verifikasi terlebih dahulu sebelum akhirnya dipublish, untuk memastikan bahwa berita serta informasi tersebut merupakan informasi yang benar sesuai dengan fakta yang ada dilapangan.
 
 ---
-##Fitur yang tersedia
+## Fitur yang tersedia
 Terdapat beberapa fitur yang tersedia seperti sebagai berikut
 + Mitigasi Bencana
     + Data Bencana yang sedang terjadi
@@ -35,7 +35,7 @@ Terdapat beberapa fitur yang tersedia seperti sebagai berikut
     + Tulis Berita Bencana
     + Hapus Informasi Bencana
 ---
-##Struktur Project
+## Struktur Project
 Struktur folder yang digunakan dalam project ini adalah sebagai berikut:
 ```
     ├── assets
@@ -86,7 +86,7 @@ Struktur folder yang digunakan dalam project ini adalah sebagai berikut:
 Pada struktur folder dari project ini menggunakan konsep MVC (Models, Views, dan Controller) yaitu dengan memisahkan antara Models yang digunakan untuk menghubungkan sistem dengan database, kemudian controllers digunakan untuk logika pada sistem dan views yang berisi mengenai tampilan depan dari website ini. Dimana selanjutnya terdapat folder middlewares yang berisi middlewares yang digunakan dalam project ini, docs berisi file documentasi dari project dan helpers berisi fungsi untuk melakukan hashing password serta renders template.
 
 ---
-##Panduan Instalasi (Installation Guide)
+## Panduan Instalasi (Installation Guide)
 ##### Instalasi awal
 Langkah awal sebelum menggunakan project adalah melakukan instalasi yaitu sebagai berikut.
 1. Download dan install Golang.
@@ -182,7 +182,7 @@ Dependency Manager
 dep ensure -add <Nama Package>
 ```
 ---
-##Dokumentasi
+## Dokumentasi
 + ##### Mitigasi Bencana
     + [Data Bencana yang sedang terjadi (GET)](/dokumentasi/databencana.md)
     + [Perbarui Data Bencana (PUT)](/dokumentasi/perbaruibencana.md)
@@ -197,5 +197,5 @@ dep ensure -add <Nama Package>
     + [Tulis Berita Bencana (POST)](/dokumentasi/tulisberita.md)
     + [Hapus Informasi Bencana (DELETE)](/dokumentasi/hapusberita.md)
 ---
-##Contoh Penggunaan
+## Contoh Penggunaan
 Contoh Penggunaan API website secara realtime dapat diakses pada dokumentasi website atau akses pada url berikut [SIMIG - Sistem Informasi dan Mitigasi Bencana](#).
