@@ -62,7 +62,7 @@ func Init() *echo.Echo {
 	e.POST("/login", controllers.LoginUser, controllers.CheckLogin)
 	e.DELETE("/logout", controllers.LogoutUser, controllers.Logouting)
 	//Register user
-	e.GET("/register", controllers.RegisterView)
+	e.GET("/register", controllers.RegisterView, middlewares.IsNotLogged)
 	e.POST("/register", controllers.RegisterUser, controllers.Registering)
 
 	//Fitur Mitigasi Bencana
