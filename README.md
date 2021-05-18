@@ -108,7 +108,7 @@ Download dependensi package yang digunakan dengan menggunakan depedency manager.
 ```bash
 dep ensure
 ```
-Apabila tidak memiliki depedency manager bisa menggunakan perintah go.
+Apabila tidak memiliki depedency manager bisa menggunakan perintah dari golang.
 1. Lacak dependensi pada project.
     ```bash
     go mod init
@@ -148,30 +148,30 @@ https://localhost:8080/
 ###### Note:
 Apabila terdapat error depedensi atau package hilang saat menjalankan aplikasi website maka download dependensi yang hilang tersebut, berikut daftar dependensi package yang digunakan.
 ```
-go get github.com/Masterminds/goutils
-go get github.com/Masterminds/semver
-go get github.com/Masterminds/sprig
-go get github.com/alecthomas/template
-go get github.com/cpuguy83/go-md2man/v2
-go get github.com/dgrijalva/jwt-go
-go get github.com/go-openapi/spec
-go get github.com/go-openapi/swag
-go get github.com/go-sql-driver/mysql
-go get github.com/google/uuid
-go get github.com/gookit/validate
-go get github.com/gorilla/sessions
-go get github.com/huandu/xstrings
-go get github.com/imdario/mergo
-go get github.com/labstack/echo-contrib
-go get github.com/labstack/echo/v4
-go get github.com/mailru/easyjson
-go get github.com/mitchellh/copystructure
-go get github.com/russross/blackfriday/v2
-go get github.com/stretchr/testify
-go get github.com/swaggo/echo-swagger
-go get github.com/swaggo/swag
-go get github.com/tkanos/gonfig
-go get github.com/urfave/cli/v2
+github.com/Masterminds/goutils
+github.com/Masterminds/semver
+github.com/Masterminds/sprig
+github.com/alecthomas/template
+github.com/cpuguy83/go-md2man/v2
+github.com/dgrijalva/jwt-go
+github.com/go-openapi/spec
+github.com/go-openapi/swag
+github.com/go-sql-driver/mysql
+github.com/google/uuid
+github.com/gookit/validate
+github.com/gorilla/sessions
+github.com/huandu/xstrings
+github.com/imdario/mergo
+github.com/labstack/echo-contrib
+github.com/labstack/echo/v4
+github.com/mailru/easyjson
+github.com/mitchellh/copystructure
+github.com/russross/blackfriday/v2
+github.com/stretchr/testify
+github.com/swaggo/echo-swagger
+github.com/swaggo/swag
+github.com/tkanos/gonfig
+github.com/urfave/cli/v2
 golang.org/x/crypto
 golang.org/x/tools v0.1.1
 ```
