@@ -7,11 +7,11 @@
 # SIMIG - Sistem Informasi dan Mitigasi Bencana
 ---
  ## Daftar Isi
-- [SIMIG - Sistem Informasi dan Mitigasi Bencana](#simig-sistem-informasi-dan-mitigasi-bencana)
+- [SIMIG - Sistem Informasi dan Mitigasi Bencana](#simig---sistem-informasi-dan-mitigasi-bencana)
 - [Deskripsi Sistem Informasi dan Mitigasi Bencana](#deskripsi-sistem-informasi-dan-mitigasi-bencana)
 - [Fitur yang tersedia](#fitur-yang-tersedia)
 - [Struktur Project](#struktur-project)
-- [Panduan Instalasi](#Panduan-Instalasi-(Installation-Guide))
+- [Panduan Instalasi](#panduan-instalasi-installation-guide))
 - [Dokumentasi](#dokumentasi)
 - [Contoh Penggunaan](#contoh-penggunaan)
 ---
