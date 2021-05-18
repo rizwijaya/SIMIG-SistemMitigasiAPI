@@ -4,7 +4,7 @@
 ##### Project 2 Pemprograman Integratif
 
 ---
-#SIMIG - Sistem Informasi dan Mitigasi Bencana
+# SIMIG - Sistem Informasi dan Mitigasi Bencana
 ---
  ## Daftar Isi
 - [SIMIG - Sistem Informasi dan Mitigasi Bencana](#simig-sistem-informasi-dan-mitigasi-bencana)
