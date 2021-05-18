@@ -3,6 +3,7 @@ package routes
 import (
 	"html/template"
 	"project-2-rizwijaya/controllers"
+	_ "project-2-rizwijaya/docs"
 	. "project-2-rizwijaya/helpers"
 	"project-2-rizwijaya/middlewares"
 
@@ -11,6 +12,7 @@ import (
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 func Init() *echo.Echo {
@@ -50,6 +52,7 @@ func Init() *echo.Echo {
 		}
 	})
 
+	e.GET("/documentation/*", echoSwagger.WrapHandler)
 	//Routing URL pada website
 	e.GET("/", controllers.BerandaView)
 	e.GET("/dashboard", controllers.DashboardView, middlewares.IsLogged)

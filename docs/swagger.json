@@ -1,0 +1,519 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Sistem Informasi dan Mitigasi Bencana",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/bencana": {
+            "get": {
+                "description": "Menampilkan daftar bencana yang sedang terjadi diberbagai wilayah di indonesia.\nJika request berhasil, maka akan menampilkan data daftar bencana yang sedang terjadi.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Mitigasi Bencana"
+                ],
+                "summary": "Data bencana yang sedang terjadi",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Bencana"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Melalui perbarui data bencana, pengguna dapat memperbarui tanggal bencana jika sudah berhasil diatasi.\nDalam memperbarui data tersebut menggunakan kode laporan bencana yang sebelumnya dilaporkan.\nJika data berhasil diperbarui maka akan mengembalikan row affected 1 jika gagal row affected 0.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Mitigasi Bencana"
+                ],
+                "summary": "Perbarui Data Bencana",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "tgl_selesai",
+                        "name": "tgl_selesai",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Perbarui_Bencana"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request/Token Salah"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Lapor Bencana, pengguna dapat melaporkan bencana yang sedang terjadi dilokasinya.\nApabila laporan bencana berhasil diterima maka akan mendapatkan kode laporan.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Laporkan Bencana"
+                ],
+                "summary": "Lapor Bencana",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Nama",
+                        "name": "nama",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Telp",
+                        "name": "telp",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "email",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Bencana",
+                        "name": "bencana",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Lokasi",
+                        "name": "lokasi",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "tgl_terjadi",
+                        "name": "tgl_terjadi",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Lapor_Bencana"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request/Token Salah"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            }
+        },
+        "/berita": {
+            "get": {
+                "description": "Pada informasi bencana ini akan menampilkan informasi terkait bencana yang sedang terjadi seperti korban jiwa, total kerugian hingga rentang waktu bencana terjadi dan bagaimana penanggulangannya.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Informasi Bencana"
+                ],
+                "summary": "Informasi Bencana",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Berita"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Perbarui Berita Bencana, pengguna dapat melakukan pembaruan atau mengedit berita bencana yang sebelumnya ditulis dengan menggunakan kode berita.\nJika data berhasil diperbarui maka akan mengembalikan row affected 1 jika gagal row affected 0",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Informasi Bencana"
+                ],
+                "summary": "Perbarui Berita Bencana",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Judul",
+                        "name": "judul",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Isi_berita",
+                        "name": "isi_berita",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Penulis",
+                        "name": "penulis",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Tanggal_ditulis",
+                        "name": "tanggal_ditulis",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Perbarui_Bencana"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request/Token Salah"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Tulis berita bencana, pengguna dapat menulis informasi maupun berita terkait bencana yang sedang terjadi.\nInformasi yang ditulis pengguna, akan dilakukan validasi oleh sistem apakah berdasarkan fakta atau tidak.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Informasi Bencana"
+                ],
+                "summary": "Tulis Berita Bencana",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Judul",
+                        "name": "judul",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Isi_berita",
+                        "name": "isi_berita",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Penulis",
+                        "name": "penulis",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Tanggal_ditulis",
+                        "name": "tanggal_ditulis",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Tulis_Berita"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request/Token Salah"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Hapus Informasi Bencana, pengguna dapat melakukan penghapusan berita yang ditulisnya dengan menggunakan kode berita.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Informasi Bencana"
+                ],
+                "summary": "Hapus Informasi Bencana",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Perbarui_Bencana"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request/Token Salah"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            }
+        },
+        "/historibencana": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Pada history bencana ini akan menampilkan bencana yang pernah terjadi sebelumnya diberbagai wilayah di indonesia.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Mitigasi Bencana"
+                ],
+                "summary": "History Bencana",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Bencana"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request/Token Salah"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            }
+        },
+        "/pelapor": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Daftar warga yang pernah melaporkan bencana yang terjadi",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Laporkan Bencana"
+                ],
+                "summary": "Data Pelapor",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Daftar_Pelapor"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request/Token Salah"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Bencana": {
+            "type": "object",
+            "properties": {
+                "bencana": {
+                    "type": "string"
+                },
+                "kode_laporan": {
+                    "type": "integer"
+                },
+                "lokasi": {
+                    "type": "string"
+                },
+                "pelapor": {
+                    "type": "string"
+                },
+                "tanggal_laporan": {
+                    "type": "string"
+                },
+                "tanggal_selesai": {
+                    "type": "string"
+                },
+                "tanggal_terjadi": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Berita": {
+            "type": "object",
+            "properties": {
+                "isi_berita": {
+                    "type": "string"
+                },
+                "judul": {
+                    "type": "string"
+                },
+                "kode_berita": {
+                    "type": "integer"
+                },
+                "penulis": {
+                    "type": "string"
+                },
+                "tanggal_ditulis": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Daftar_Pelapor": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "pelapor": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Lapor_Bencana": {
+            "type": "object",
+            "properties": {
+                "Kode Laporan Bencana": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Perbarui_Bencana": {
+            "type": "object",
+            "properties": {
+                "rows_Affected": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Tulis_Berita": {
+            "type": "object",
+            "properties": {
+                "Kode Berita": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

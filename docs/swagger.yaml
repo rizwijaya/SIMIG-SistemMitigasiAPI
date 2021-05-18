@@ -1,0 +1,353 @@
+basePath: /
+definitions:
+  models.Bencana:
+    properties:
+      bencana:
+        type: string
+      kode_laporan:
+        type: integer
+      lokasi:
+        type: string
+      pelapor:
+        type: string
+      tanggal_laporan:
+        type: string
+      tanggal_selesai:
+        type: string
+      tanggal_terjadi:
+        type: string
+    type: object
+  models.Berita:
+    properties:
+      isi_berita:
+        type: string
+      judul:
+        type: string
+      kode_berita:
+        type: integer
+      penulis:
+        type: string
+      tanggal_ditulis:
+        type: string
+    type: object
+  models.Daftar_Pelapor:
+    properties:
+      id:
+        type: integer
+      pelapor:
+        type: string
+      username:
+        type: string
+    type: object
+  models.Lapor_Bencana:
+    properties:
+      Kode Laporan Bencana:
+        type: integer
+    type: object
+  models.Perbarui_Bencana:
+    properties:
+      rows_Affected:
+        type: integer
+    type: object
+  models.Tulis_Berita:
+    properties:
+      Kode Berita:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  title: Sistem Informasi dan Mitigasi Bencana
+  version: "1.0"
+paths:
+  /bencana:
+    get:
+      consumes:
+      - application/json
+      description: |-
+        Menampilkan daftar bencana yang sedang terjadi diberbagai wilayah di indonesia.
+        Jika request berhasil, maka akan menampilkan data daftar bencana yang sedang terjadi.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Bencana'
+        "400":
+          description: Bad Request
+        "422":
+          description: Unprocessable Entity
+      summary: Data bencana yang sedang terjadi
+      tags:
+      - Mitigasi Bencana
+    post:
+      description: |-
+        Lapor Bencana, pengguna dapat melaporkan bencana yang sedang terjadi dilokasinya.
+        Apabila laporan bencana berhasil diterima maka akan mendapatkan kode laporan.
+      parameters:
+      - description: Username
+        in: query
+        name: username
+        required: true
+        type: string
+      - description: Nama
+        in: query
+        name: nama
+        required: true
+        type: string
+      - description: Telp
+        in: query
+        name: telp
+        required: true
+        type: string
+      - description: Email
+        in: query
+        name: email
+        required: true
+        type: string
+      - description: Bencana
+        in: query
+        name: bencana
+        required: true
+        type: string
+      - description: Lokasi
+        in: query
+        name: lokasi
+        required: true
+        type: string
+      - description: tgl_terjadi
+        in: query
+        name: tgl_terjadi
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Lapor_Bencana'
+        "400":
+          description: Bad Request/Token Salah
+        "422":
+          description: Unprocessable Entity
+      security:
+      - ApiKeyAuth: []
+      summary: Lapor Bencana
+      tags:
+      - Laporkan Bencana
+    put:
+      description: |-
+        Melalui perbarui data bencana, pengguna dapat memperbarui tanggal bencana jika sudah berhasil diatasi.
+        Dalam memperbarui data tersebut menggunakan kode laporan bencana yang sebelumnya dilaporkan.
+        Jika data berhasil diperbarui maka akan mengembalikan row affected 1 jika gagal row affected 0.
+      parameters:
+      - description: Id
+        in: query
+        name: id
+        required: true
+        type: integer
+      - description: tgl_selesai
+        in: query
+        name: tgl_selesai
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Perbarui_Bencana'
+        "400":
+          description: Bad Request/Token Salah
+        "422":
+          description: Unprocessable Entity
+      security:
+      - ApiKeyAuth: []
+      summary: Perbarui Data Bencana
+      tags:
+      - Mitigasi Bencana
+  /berita:
+    delete:
+      description: Hapus Informasi Bencana, pengguna dapat melakukan penghapusan berita
+        yang ditulisnya dengan menggunakan kode berita.
+      parameters:
+      - description: Id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Perbarui_Bencana'
+        "400":
+          description: Bad Request/Token Salah
+        "422":
+          description: Unprocessable Entity
+      security:
+      - ApiKeyAuth: []
+      summary: Hapus Informasi Bencana
+      tags:
+      - Informasi Bencana
+    get:
+      consumes:
+      - application/json
+      description: Pada informasi bencana ini akan menampilkan informasi terkait bencana
+        yang sedang terjadi seperti korban jiwa, total kerugian hingga rentang waktu
+        bencana terjadi dan bagaimana penanggulangannya.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Berita'
+        "400":
+          description: Bad Request
+        "422":
+          description: Unprocessable Entity
+      summary: Informasi Bencana
+      tags:
+      - Informasi Bencana
+    post:
+      description: |-
+        Tulis berita bencana, pengguna dapat menulis informasi maupun berita terkait bencana yang sedang terjadi.
+        Informasi yang ditulis pengguna, akan dilakukan validasi oleh sistem apakah berdasarkan fakta atau tidak.
+      parameters:
+      - description: Judul
+        in: query
+        name: judul
+        required: true
+        type: string
+      - description: Isi_berita
+        in: query
+        name: isi_berita
+        required: true
+        type: string
+      - description: Penulis
+        in: query
+        name: penulis
+        required: true
+        type: string
+      - description: Tanggal_ditulis
+        in: query
+        name: tanggal_ditulis
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Tulis_Berita'
+        "400":
+          description: Bad Request/Token Salah
+        "422":
+          description: Unprocessable Entity
+      security:
+      - ApiKeyAuth: []
+      summary: Tulis Berita Bencana
+      tags:
+      - Informasi Bencana
+    put:
+      description: |-
+        Perbarui Berita Bencana, pengguna dapat melakukan pembaruan atau mengedit berita bencana yang sebelumnya ditulis dengan menggunakan kode berita.
+        Jika data berhasil diperbarui maka akan mengembalikan row affected 1 jika gagal row affected 0
+      parameters:
+      - description: Id
+        in: query
+        name: id
+        required: true
+        type: integer
+      - description: Judul
+        in: query
+        name: judul
+        required: true
+        type: string
+      - description: Isi_berita
+        in: query
+        name: isi_berita
+        required: true
+        type: string
+      - description: Penulis
+        in: query
+        name: penulis
+        required: true
+        type: string
+      - description: Tanggal_ditulis
+        in: query
+        name: tanggal_ditulis
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Perbarui_Bencana'
+        "400":
+          description: Bad Request/Token Salah
+        "422":
+          description: Unprocessable Entity
+      security:
+      - ApiKeyAuth: []
+      summary: Perbarui Berita Bencana
+      tags:
+      - Informasi Bencana
+  /historibencana:
+    get:
+      consumes:
+      - application/json
+      description: Pada history bencana ini akan menampilkan bencana yang pernah terjadi
+        sebelumnya diberbagai wilayah di indonesia.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Bencana'
+        "400":
+          description: Bad Request/Token Salah
+        "422":
+          description: Unprocessable Entity
+      security:
+      - ApiKeyAuth: []
+      summary: History Bencana
+      tags:
+      - Mitigasi Bencana
+  /pelapor:
+    get:
+      consumes:
+      - application/json
+      description: Daftar warga yang pernah melaporkan bencana yang terjadi
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Daftar_Pelapor'
+        "400":
+          description: Bad Request/Token Salah
+        "422":
+          description: Unprocessable Entity
+      security:
+      - ApiKeyAuth: []
+      summary: Data Pelapor
+      tags:
+      - Laporkan Bencana
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
