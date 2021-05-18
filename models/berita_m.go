@@ -1,6 +1,7 @@
 package models
 
 import (
+	"database/sql"
 	"net/http"
 	"project-2-rizwijaya/db"
 )
@@ -38,6 +39,29 @@ func SemuaBerita() (Response, error) { //Fungsi untuk menampilkan berita bencana
 		arrobj = append(arrobj, obj)
 	}
 
+	res.Status = http.StatusOK
+	res.Message = "Success"
+	res.Data = arrobj
+
+	return res, nil
+}
+
+func BeritaById(id string) (Response, error) { //Fungsi untuk menampilkan berita bencana
+	var obj Berita
+	var arrobj []Berita
+	var res Response
+
+	con := db.CreateCon()
+
+	sqlStatement := "SELECT id_berita, judul, isi_berita, penulis, tanggal_ditulis FROM berita WHERE status != 0 AND id_berita = ?"
+
+	err := con.QueryRow(sqlStatement, id).Scan(&obj.Id, &obj.Judul, &obj.Isi_berita, &obj.Penulis, &obj.Tgl_ditulis)
+
+	if err == sql.ErrNoRows {
+		//fmt.Print("Username not found")
+		return res, err
+	}
+	arrobj = append(arrobj, obj)
 	res.Status = http.StatusOK
 	res.Message = "Success"
 	res.Data = arrobj

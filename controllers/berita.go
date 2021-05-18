@@ -26,6 +26,26 @@ func SemuaBerita(c echo.Context) error { //Menghandle response yang masuk
 	return c.JSON(http.StatusOK, result)
 }
 
+// @Summary Informasi Bencana dengan Kode Berita
+// @Description Pada informasi bencana ini akan menampilkan informasi terkait bencana yang sedang terjadi dengan menggunakan kode berita seperti korban jiwa, total kerugian hingga rentang waktu bencana terjadi dan bagaimana penanggulangannya.
+// @Tags Informasi Bencana
+// @Accept  json
+// @Produce  json
+// @Param id query integer true "id"
+// @Success 200 {object} models.Berita
+// @Failure 422 "Unprocessable Entity"
+// @Failure 400 "Bad Request"
+// @Router /beritaid [get]
+func BeritaById(c echo.Context) error { //Dapatkan berita by kode berita/id
+	id := c.FormValue("id")
+	result, err := models.BeritaById(id)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()}) //Menampilakan interface error
+	}
+
+	return c.JSON(http.StatusOK, result)
+}
+
 // @Summary Tulis Berita Bencana
 // @Description Tulis berita bencana, pengguna dapat menulis informasi maupun berita terkait bencana yang sedang terjadi.
 // @Description Informasi yang ditulis pengguna, akan dilakukan validasi oleh sistem apakah berdasarkan fakta atau tidak.

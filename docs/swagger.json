@@ -354,6 +354,44 @@
                 }
             }
         },
+        "/beritaid": {
+            "get": {
+                "description": "Pada informasi bencana ini akan menampilkan informasi terkait bencana yang sedang terjadi dengan menggunakan kode berita seperti korban jiwa, total kerugian hingga rentang waktu bencana terjadi dan bagaimana penanggulangannya.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Informasi Bencana"
+                ],
+                "summary": "Informasi Bencana dengan Kode Berita",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Berita"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            }
+        },
         "/historibencana": {
             "get": {
                 "security": [

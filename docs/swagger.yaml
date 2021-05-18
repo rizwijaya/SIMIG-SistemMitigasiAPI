@@ -302,6 +302,33 @@ paths:
       summary: Perbarui Berita Bencana
       tags:
       - Informasi Bencana
+  /beritaid:
+    get:
+      consumes:
+      - application/json
+      description: Pada informasi bencana ini akan menampilkan informasi terkait bencana
+        yang sedang terjadi dengan menggunakan kode berita seperti korban jiwa, total
+        kerugian hingga rentang waktu bencana terjadi dan bagaimana penanggulangannya.
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Berita'
+        "400":
+          description: Bad Request
+        "422":
+          description: Unprocessable Entity
+      summary: Informasi Bencana dengan Kode Berita
+      tags:
+      - Informasi Bencana
   /historibencana:
     get:
       consumes:

@@ -74,6 +74,7 @@ func Init() *echo.Echo {
 
 	//Fitur berita bencana
 	e.GET("/berita", controllers.SemuaBerita)                                 //Daftar berita bencana terbaru
+	e.GET("/beritaid", controllers.BeritaById)                                //Berita Bencana By Id
 	e.POST("/berita", controllers.TulisBerita, middlewares.IsAuthenticated)   //Tambah berita bencana
 	e.PUT("/berita", controllers.UpdateBerita, middlewares.IsAuthenticated)   //Edit berita bencana
 	e.DELETE("/berita", controllers.HapusBerita, middlewares.IsAuthenticated) //Hapus berita bencana
