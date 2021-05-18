@@ -62,4 +62,4 @@ curl -X POST "http://localhost:8080/berita?judul=Bencana%20Longsor%20Juga%20Terj
 
 ## Catatan
 
-Apabila berita berhasil ditulis maka akan mendapatkan kode laporan.
+Apabila berita berhasil ditulis maka akan mendapatkan kode berita.
