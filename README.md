@@ -5,7 +5,7 @@
 
 ---
 # ![Logo SIMIG](/assets/images/logo/logo.png)
-Sistem Informasi dan Mitigasi Bencana
+[Sistem Informasi dan Mitigasi Bencana](https://lintasin.me)
 ---
  ## Daftar Isi
 - [SIMIG - Sistem Informasi dan Mitigasi Bencana](#simig---sistem-informasi-dan-mitigasi-bencana)
@@ -200,7 +200,7 @@ dep ensure -add <Nama Package>
     + [Hapus Informasi Bencana (DELETE)](/dokumentasi/hapusberita.md)
 ---
 ## Contoh Penggunaan
-Contoh Penggunaan API website secara realtime dapat diakses pada dokumentasi website atau akses pada url berikut [SIMIG - Sistem Informasi dan Mitigasi Bencana](#).
+Contoh Penggunaan API website secara realtime dapat diakses pada dokumentasi website atau akses pada url berikut [SIMIG - Sistem Informasi dan Mitigasi Bencana](https://lintasin.me/documentation/index.html).
 
 ---
 ## Halaman Utama
