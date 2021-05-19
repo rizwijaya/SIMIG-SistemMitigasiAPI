@@ -1,0 +1,290 @@
+{{ define "base.html" }}
+{{ template "header" .}}
+<!-- Start Breadcrumbs -->
+<div class="breadcrumbs overlay">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="breadcrumbs-content">
+                    <h1 class="page-title">Panduan Instalasi</h1>
+                    <p>Sistem Informasi dan Mitigasi Bencana API
+                        merupakan API yang berisi data bencana yang pernah terjadi
+                        dan sedang terjadi serta mitigasi dari bencana tersebut. </p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <ul class="breadcrumb-nav">
+                    <li><a href="/">Home</a></li>
+                    <li>Panduan Instalasi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+<style>
+    code { background-color: #eee; }
+</style>
+<section class="faq section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <span>Instalasi Awal</span><i class="lni lni-chevron-down"></i>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Langkah awal sebelum menggunakan project adalah melakukan instalasi yaitu sebagai
+                                    berikut.
+                                <ol>
+                                    <li>1. Download dan install Golang.
+                                        <ul>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <a
+                                                href="https://golang.org/doc/install#download">Download Golang</a></ul>
+                                        <ul>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <a
+                                                href="https://golang.org/doc/install">Documentasi Install Golang</a>
+                                        </ul>
+                                    </li>
+                                    <li>2. Buka folder $GOPATH /src/github.com/</li>
+                                    <li>3. Pada folder tersebut dapatkan source code dari repository dengan mengetikkan
+                                        perintah berikut pada terminal.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>git clone https://github.com/2021-IT-Pemrograman-Integratif/project-2-rizwijaya.git</code>
+                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;Atau bisa menggunakan perintah berikut.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>go get -u https://github.com/2021-IT-Pemrograman-Integratif/project-2-rizwijaya</code>
+                                    </li>
+                                </ol>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <span>Download Dependensi</span><i class="lni lni-chevron-down"></i>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Download dependensi package yang digunakan dengan menggunakan depedency manager.<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>dep ensure</code><br>
+                                    Apabila tidak memiliki depedency manager bisa menggunakan perintah dari golang.
+                                <ol>
+                                    <li>1. Lacak dependensi pada project.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<code>go mod init</code>
+                                    </li>
+                                    <li>2. Selanjutnya Lakukan perintah berikut.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<code>go mod vendor</code>
+                                    </li>
+                                    <li>3. Build project menggunakan perintah berikut.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<code>go build</code>
+                                    </li>
+                                </ol>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <span>Konfigurasikan Database</span><i class="lni lni-chevron-down"></i>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>
+                                <ol>
+                                    <li>1. Langkah pertama dalam konfigurasi database adalah buat database baru.</li>
+                                    <li>2. Selanjutnya import database dari project, pada project ini database terletak
+                                        di folder database/mitigasi.sql.</li>
+                                    <li>3. Konfigurasikan database pada website, buka file config.json yang terletak
+                                        pada folder config.</li>
+                                    <li>4. Pada file config.json lakukan konfigurasi sesuai dengan database dan host
+                                        yang digunakan yaitu sebagai berikut.
+                                    </li><style> pre { background-color: #eee; } </style>
+                                    <pre><code>
+{
+    "DB_USERNAME" : "Username database yang digunakan",
+    "DB_PASSWORD" : "Password database yang digunakan",
+    "DB_PORT" : "Port dari database",
+    "DB_HOST" : "Host dari database",
+    "DB_NAME" : "Nama dari database"
+}
+                                    </code></pre>
+                                    <li>5. Simpan Konfigurasi tersebut.</li>
+                                </ol>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <span>Jalankan Web Server</span><i class="lni lni-chevron-down"></i>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>
+                                    Setelah selesai melakukan instalasi dan konfigurasi file serta database selanjutnya jalankan web server pada folder project menggunakan perintah.
+                                    <br><code>go run main.go</code><br>Buka browser dan masukkan alamat sebagai berikut.<br><code>https://localhost:8080/</code>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <span>Catatan</span><i class="lni lni-chevron-down"></i>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>
+                                    Apabila terdapat error depedensi atau package hilang saat menjalankan aplikasi website maka download dependensi yang hilang tersebut, berikut daftar dependensi package yang digunakan.
+                                    <br>
+                                    <pre>
+                                        <code>
+github.com/Masterminds/goutils
+github.com/Masterminds/semver
+github.com/Masterminds/sprig
+github.com/alecthomas/template
+github.com/cpuguy83/go-md2man/v2
+github.com/dgrijalva/jwt-go
+github.com/go-openapi/spec
+github.com/go-openapi/swag
+github.com/go-sql-driver/mysql
+github.com/google/uuid
+github.com/gookit/validate
+github.com/gorilla/sessions
+github.com/huandu/xstrings
+github.com/imdario/mergo
+github.com/labstack/echo-contrib
+github.com/labstack/echo/v4
+github.com/mailru/easyjson
+github.com/mitchellh/copystructure
+github.com/russross/blackfriday/v2
+github.com/stretchr/testify
+github.com/swaggo/echo-swagger
+github.com/swaggo/swag
+github.com/tkanos/gonfig
+github.com/urfave/cli/v2
+golang.org/x/crypto
+golang.org/x/tools   
+                                        </code>
+                                    </pre>
+                                    <br>
+                                    Untuk mendownload dependensi dapat menggunakan perintah <code>go get</code> atau menggunakan dependency manager. Dengan contoh sebagai berikut.
+                                    <br>
+                                    <code>go get Nama Package</code>
+                                    <br>
+                                    Dependency Manager
+                                    <br>
+                                    <code>dep ensure -add Nama Package</code>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ <!-- Start Footer Area -->
+ <footer class="footer">
+    <!-- Start Middle Top -->
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <!-- Single Widget -->
+                    <div class="f-about single-footer">
+                        <div class="logo">
+                            <a href="#"><img src="images/logo/footer-logo.png" alt="Logo"></a>
+                        </div>
+                        <p>Sistem Informasi dan Mitigasi Bencana API
+                            merupakan API yang berisi data bencana yang pernah terjadi
+                            dan sedang terjadi serta mitigasi dari bencana tersebut.</p>
+                    </div>
+                    <!-- End Single Widget -->
+                </div>
+                <div class="col-lg-8 col-md-8 col-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer sm-custom-border f-link">
+                                <h3>Bencana Alam</h3>
+                                <ul>
+                                    <li><a href="#">Banjir</a></li>
+                                    <li><a href="#">Tanah Longsor</a></li>
+                                    <li><a href="#">Gempa Bumi</a></li>
+                                    <li><a href="#">Angin Puting Beliung</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer sm-custom-border f-link">
+                                <h3>Integritas Informasi</h3>
+                                <ul>
+                                    <li><a href="#">Informasi Akurat</a></li>
+                                    <li><a href="#">Informasi Terbaru</a></li>
+                                    <li><a href="#">Lapor Bencana</a></li>
+                                    <li><a href="#">Riwayat Bencana</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer md-custom-border sm-custom-border f-link">
+                                <h3>Fitur pada API</h3>
+                                <ul>
+                                    <li><a href="#">Lapor Bencana</a></li>
+                                    <li><a href="#">Bencana yang terjadi</a></li>
+                                    <li><a href="#">Riwayat Bencana</a></li>
+                                    <li><a href="#">Informasi dan Mitigasi</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Footer Middle -->
+</footer>
+<!--/ End Footer Area -->
+
+<!-- ========================= scroll-top ========================= -->
+<a href="#" class="scroll-top btn-hover">
+    <i class="lni lni-chevron-up"></i>
+</a>
+
+<!-- ========================= JS here ========================= -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/count-up.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/tiny-slider.js"></script>
+<script src="js/glightbox.min.js"></script>
+<script src="js/imagesloaded.min.js"></script>
+<script src="js/isotope.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+
+</html>
+{{ end }}

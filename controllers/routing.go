@@ -52,3 +52,10 @@ func RegisterUser(c echo.Context) error {
 	c.(*middlewares.CustomContext).SetFlash("done", "Akun berhasil dibuat, silahkan login!")
 	return c.Redirect(http.StatusMovedPermanently, "/login")
 }
+
+func PanduanInstall(c echo.Context) error {
+	auth := c.(*middlewares.CustomContext).Auth()
+	return c.Render(http.StatusOK, "panduaninstall.html", map[string]interface{}{
+		"auth": auth,
+	})
+}

@@ -41,6 +41,7 @@ func Init() *echo.Echo {
 	templates["dashboard.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/dashboard.html", "views/footer.html", "views/alert.html"))
 	templates["documentation.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/documentation.html", "views/footer.html", "views/alert.html"))
 	templates["register.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/register.html", "views/footer.html", "views/alert.html"))
+	templates["panduaninstall.html"] = template.Must(template.New("base").Funcs(sprig.FuncMap()).ParseFiles("views/header.html", "views/panduaninstall.html", "views/footer.html", "views/alert.html"))
 	e.Renderer = &TemplateRegistry{ //Lakukan render template
 		Templates: templates,
 	}
@@ -52,11 +53,12 @@ func Init() *echo.Echo {
 		}
 	})
 
-	e.GET("/documentation/*", echoSwagger.WrapHandler)
 	//Routing URL pada website
 	e.GET("/", controllers.BerandaView)
 	e.GET("/dashboard", controllers.DashboardView, middlewares.IsLogged)
 	e.GET("/documentation", controllers.DocumentationView)
+	e.GET("/documentation/*", echoSwagger.WrapHandler)
+	e.GET("/panduaninstall", controllers.PanduanInstall)
 	//Login dan Logout
 	e.GET("/login", controllers.LoginView, middlewares.IsNotLogged)
 	e.POST("/login", controllers.LoginUser, controllers.CheckLogin)

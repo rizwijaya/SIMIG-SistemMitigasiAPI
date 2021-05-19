@@ -173,7 +173,7 @@ github.com/swaggo/swag
 github.com/tkanos/gonfig
 github.com/urfave/cli/v2
 golang.org/x/crypto
-golang.org/x/tools v0.1.1
+golang.org/x/tools
 ```
 Untuk mendownload dependensi dapat menggunakan perintah ```go get``` atau menggunakan dependency manager. Dengan contoh sebagai berikut.
 ```
