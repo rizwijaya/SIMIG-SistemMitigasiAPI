@@ -1,9 +1,3 @@
-##### Nama : Muhammad Rizqi Wijaya
-##### NRP : 05311940000014
-##### Departemen : Teknologi Informasi
-##### Project 2 Pemprograman Integratif
-
----
 # ![Logo SIMIG](/assets/images/logo/logo.png)
 [Sistem Informasi dan Mitigasi Bencana](https://lintasin.me)
 ---
