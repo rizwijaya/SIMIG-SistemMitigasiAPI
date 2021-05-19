@@ -113,9 +113,9 @@ Apabila tidak memiliki depedency manager bisa menggunakan perintah dari golang.
     ```bash
     go mod init
     ```
-2. Selanjutnya Lakukan perintah berikut.
+2. Selanjutnya download dependensi dengan perintah berikut.
     ```bash
-    go mod vendor
+    go mod tidy
     ```
 3. Build project menggunakan perintah berikut.
     ```bash
