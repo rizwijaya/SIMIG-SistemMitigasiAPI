@@ -91,11 +91,11 @@ Langkah awal sebelum menggunakan project adalah melakukan instalasi yaitu sebaga
 2. Buka folder $GOPATH /src/github.com/
 3. Pada folder tersebut dapatkan source code dari repository dengan mengetikkan perintah berikut pada terminal.
     ```bash
-    git clone https://github.com/2021-IT-Pemrograman-Integratif/project-2-rizwijaya.git
+    git clone https://github.com/rizwijaya/SIMIG-SistemMitigasiAPI.git
     ```
     Atau bisa menggunakan perintah berikut.
     ```bash
-    go get -u https://github.com/2021-IT-Pemrograman-Integratif/project-2-rizwijaya
+    go get -u https://github.com/rizwijaya/SIMIG-SistemMitigasiAPI
     ```
 ##### Download Dependensi
 Download dependensi package yang digunakan dengan menggunakan depedency manager.
